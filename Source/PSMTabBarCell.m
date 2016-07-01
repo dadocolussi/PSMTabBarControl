@@ -724,6 +724,16 @@ static inline NSSize scaleProportionally(NSSize imageSize, NSSize canvasSize, BO
 	return NO;
 }
 
+- (NSArray *)accessibilityAttributeNames {
+	static NSArray *attributes = nil;
+	if (!attributes) {
+		NSSet *set = [NSSet setWithArray:[super accessibilityAttributeNames]];
+		set = [set setByAddingObject:NSAccessibilityTitleAttribute];
+		attributes = [[set allObjects] retain];
+	}
+	return attributes;
+}
+
 - (id)accessibilityAttributeValue:(NSString *)attribute {
 	id attributeValue = nil;
 
