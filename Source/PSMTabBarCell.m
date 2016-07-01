@@ -153,6 +153,7 @@
 	_attributedStringSize = [[self attributedStringValue] size];
 	// need to redisplay now - binding observation was too quick.
 	[[self controlView] update];
+	NSAccessibilityPostNotification(self, NSAccessibilityTitleChangedNotification);
 }
 
 - (NSSize)attributedStringSize {
