@@ -2300,6 +2300,7 @@ static NSMutableDictionary *registeredStyleClasses;
         set = [set setByAddingObjectsFromArray:[NSArray arrayWithObjects:
                                                 NSAccessibilityTabsAttribute,
                                                 NSAccessibilityValueAttribute,
+												NSAccessibilityContentsAttribute,
                                                 nil]];
         attributes = [[set allObjects] retain];
     }
@@ -2319,6 +2320,8 @@ static NSMutableDictionary *registeredStyleClasses;
         attributeValue = NSAccessibilityUnignoredChildren(children);
     } else if ([attribute isEqualToString: NSAccessibilityTabsAttribute]) {
         attributeValue = NSAccessibilityUnignoredChildren(_cells);
+	} else if ([attribute isEqualToString: NSAccessibilityContentsAttribute]) {
+		attributeValue = NSAccessibilityUnignoredChildren([[[[self tabView] selectedTabViewItem] view] subviews]);
     } else if ([attribute isEqualToString:NSAccessibilityValueAttribute]) {
         NSTabViewItem *tabViewItem = [tabView selectedTabViewItem];
         for (NSActionCell *cell in _cells) {
