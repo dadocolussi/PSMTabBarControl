@@ -2317,6 +2317,7 @@ static NSMutableDictionary *registeredStyleClasses;
             [children addObject:_overflowPopUpButton];
         if(![_addTabButton isHidden])
             [children addObject:_addTabButton];
+		[children addObjectsFromArray:[[[[self tabView] selectedTabViewItem] view] subviews]];
         attributeValue = NSAccessibilityUnignoredChildren(children);
     } else if ([attribute isEqualToString: NSAccessibilityTabsAttribute]) {
         attributeValue = NSAccessibilityUnignoredChildren(_cells);
