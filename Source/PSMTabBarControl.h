@@ -198,6 +198,12 @@ typedef enum PSMTabStateMask : NSUInteger {
 - (id)partnerView;
 - (void)setPartnerView:(id)view;
 
+#pragma mark Actions
+- (void)overflowMenuAction:(id)sender;
+- (void)closeTabClick:(id)sender;
+- (void)tabClick:(id)sender;
+- (void)tabNothing:(id)sender;
+
 #pragma mark -
 #pragma mark Determining Sizes
 
