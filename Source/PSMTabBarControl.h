@@ -294,3 +294,15 @@ typedef enum PSMTabStateMask : NSUInteger {
 - (NSString *)accessibilityStringForTabView:(NSTabView *)aTabView objectCount:(NSInteger)objectCount;
 
 @end
+
+@protocol PSMTabBarControlModel
+
+@optional
+- (BOOL)isProcessing;
+- (NSImage*)icon;
+- (NSInteger)objectCount;
+- (NSColor*)countColor;
+- (NSImage*)largeImage;
+- (BOOL)isEdited;
+
+@end
