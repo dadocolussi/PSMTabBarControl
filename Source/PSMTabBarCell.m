@@ -1226,20 +1226,8 @@ static inline NSSize scaleProportionally(NSSize imageSize, NSSize canvasSize, BO
 
     NSRect rect = [self titleRectForBounds:frame];
 
-    [NSGraphicsContext saveGraphicsState];
-    
-    NSShadow *shadow = [[NSShadow alloc] init];
-    [shadow setShadowColor:[[NSColor whiteColor] colorWithAlphaComponent:0.4]];
-    [shadow setShadowBlurRadius:1.0];
-    [shadow setShadowOffset:NSMakeSize(0.0, -1.0)];
-    [shadow set];
-
     // draw title
     [[self attributedStringValue] drawInRect:rect];
-
-    [NSGraphicsContext restoreGraphicsState];
-        
-    [shadow release];
 }
 
 - (void)_drawObjectCounterWithFrame:(NSRect)frame inTabBarControl:(PSMTabBarControl *)tabBarControl {
