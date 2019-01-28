@@ -1116,7 +1116,13 @@ static inline NSSize scaleProportionally(NSSize imageSize, NSSize canvasSize, BO
 	NSRange range = NSMakeRange(0, [contents length]);
 
 	[attrStr addAttribute:NSFontAttributeName value:[NSFont systemFontOfSize:11.0] range:range];
-	[attrStr addAttribute:NSForegroundColorAttributeName value:[NSColor controlTextColor] range:range];
+	BOOL isSelected = _tabState & PSMTab_SelectedMask;
+	NSColor *textColor = isSelected ? [NSColor labelColor] : [NSColor secondaryLabelColor];
+	if ([self isHighlighted])
+	{
+		textColor = [NSColor labelColor];
+	}
+	[attrStr addAttribute:NSForegroundColorAttributeName value:textColor range:range];
     
 	// Paragraph Style for Truncating Long Text
 	static NSMutableParagraphStyle *truncatingTailParagraphStyle = nil;
