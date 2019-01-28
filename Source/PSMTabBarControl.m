@@ -267,6 +267,14 @@ static NSMutableDictionary *registeredStyleClasses;
         // add observing of cells
         [self addObserver:self forKeyPath:@"cells" options:NSKeyValueObservingOptionNew |
             NSKeyValueObservingOptionOld | NSKeyValueObservingOptionInitial context:NULL];
+		
+		if ([NSApp respondsToSelector:@selector(effectiveAppearance)])
+		{
+			[self addObserver:self
+				   forKeyPath:@"effectiveAppearance"
+					  options:NSKeyValueObservingOptionInitial
+					  context:NULL];
+		}
 	}
 //	[self setTarget:self];
 	return self;
@@ -274,6 +282,11 @@ static NSMutableDictionary *registeredStyleClasses;
 
 - (void)dealloc {
     
+	if ([NSApp respondsToSelector:@selector(effectiveAppearance)])
+	{
+		[self removeObserver:self forKeyPath:@"effectiveAppearance"];
+	}
+	
     [self removeObserver:self forKeyPath:@"cells"];
 
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -708,6 +721,12 @@ static NSMutableDictionary *registeredStyleClasses;
 #pragma mark -
 #pragma mark Functionality
 
+- (void)onAppearanceChanged
+{
+	[self setNeedsDisplay:YES];
+	[self setNeedsLayout:YES];
+}
+
 - (void)addTabViewItem:(NSTabViewItem *)item atIndex:(NSUInteger)index {
 	// create cell
 	PSMTabBarCell *cell = [[PSMTabBarCell alloc] init];
@@ -819,8 +838,11 @@ static NSMutableDictionary *registeredStyleClasses;
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 
+	if ([keyPath isEqualToString:@"effectiveAppearance"])
+		[self onAppearanceChanged];
+	
     // did cell array change?
-    if ([keyPath isEqualToString:@"cells"]) {
+    else if ([keyPath isEqualToString:@"cells"]) {
         [self updateTrackingAreas];
 
     // did the tab's identifier change?
