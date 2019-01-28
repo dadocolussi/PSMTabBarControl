@@ -136,70 +136,45 @@
 
 - (void)drawBezelOfTabCell:(PSMTabBarCell *)cell withFrame:(NSRect)frame inTabBarControl:(PSMTabBarControl *)tabBarControl {
 
-	NSRect cellFrame = frame;
-
-	// Selected Tab
+	frame.size.height -= 1.0;
 	if([cell state] == NSOnState) {
-		NSRect aRect = NSMakeRect(cellFrame.origin.x, cellFrame.origin.y, cellFrame.size.width, cellFrame.size.height - 2.5);
-		aRect.size.height -= 0.5;
-
-		// proper tint
-		NSControlTint currentTint;
-		if([cell controlTint] == NSDefaultControlTint) {
-			currentTint = [NSColor currentControlTint];
-		} else{
-			currentTint = [cell controlTint];
-		}
-
-		if(![tabBarControl isWindowActive]) {
-			currentTint = NSClearControlTint;
-		}
-
-		NSImage *bgImage;
-		switch(currentTint) {
-		case NSGraphiteControlTint:
-			bgImage = aquaTabBgDownGraphite;
-			break;
-		case NSClearControlTint:
-			bgImage = aquaTabBgDownNonKey;
-			break;
-		case NSBlueControlTint:
-		default:
-			bgImage = aquaTabBgDown;
-			break;
-		}
-
-        [bgImage drawInRect:cellFrame fromRect:NSMakeRect(0.0, 0.0, 1.0, 22.0) operation:NSCompositeSourceOver fraction:1.0 respectFlipped:YES hints:nil];
-        
-        [aquaDivider drawAtPoint:NSMakePoint(cellFrame.origin.x + cellFrame.size.width - 1.0, cellFrame.origin.y) fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
-
-		aRect.size.height += 0.5;
-	} else { // Unselected Tab
-		NSRect aRect = NSMakeRect(cellFrame.origin.x, cellFrame.origin.y, cellFrame.size.width, cellFrame.size.height);
-		aRect.origin.y += 0.5;
-		aRect.origin.x += 1.5;
-		aRect.size.width -= 1;
-
-		aRect.origin.x -= 1;
-		aRect.size.width += 1;
-
-		// Rollover
+		// Selected Tab
+		[[NSColor controlBackgroundColor] setFill];
+		NSRectFill(frame);
+	} else {
 		if([cell isHighlighted]) {
-			[[NSColor colorWithCalibratedWhite:0.0 alpha:0.1] set];
-			NSRectFillUsingOperation(aRect, NSCompositeSourceAtop);
+			// Rolling over an unselected tab
+			[[NSColor windowBackgroundColor] setFill];
+			NSRectFill(frame);
+		} else {
+			// Unselected Tab
+			[[NSColor windowBackgroundColor] setFill];
+			NSRectFill(frame);
 		}
-
-        [aquaDivider drawAtPoint:NSMakePoint(cellFrame.origin.x + cellFrame.size.width - 1.0, cellFrame.origin.y) fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
 	}
+	NSRect dividerRect = NSMakeRect(frame.origin.x + frame.size.width - 1.0,
+									frame.origin.y,
+									1.0,
+									frame.size.height);
+	[[NSColor controlShadowColor] setFill];
+	NSRectFill(dividerRect);
 }
 
 - (void)drawBezelOfTabBarControl:(PSMTabBarControl *)tabBarControl inRect:(NSRect)rect {
 	if(rect.size.height <= 22.0) {
 		//Draw for our whole bounds; it'll be automatically clipped to fit the appropriate drawing area
 		rect = [tabBarControl bounds];
-
-		[aquaTabBg drawInRect:rect fromRect:NSMakeRect(0.0, 0.0, 1.0, 22.0) operation:NSCompositeSourceOver fraction:1.0 respectFlipped:YES hints:nil];
+		NSColor *c = [NSColor windowBackgroundColor];
+		[c setFill];
+		NSRectFill(rect);
 	}
+	
+	NSRect dividerRect = NSMakeRect(rect.origin.x,
+									rect.origin.y + rect.size.height - 1.0,
+									rect.size.width,
+									1.0);
+	[[NSColor controlShadowColor] setFill];
+	NSRectFill(dividerRect);
 }
 
 #pragma mark -
