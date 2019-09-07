@@ -167,6 +167,7 @@
 		5A5652FF15D1E72F00F9EFD5 /* PSMTabBarControlFramework-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "PSMTabBarControlFramework-Debug.xcconfig"; sourceTree = "<group>"; };
 		5A56530015D1E72F00F9EFD5 /* PSMTabBarControlFramework-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "PSMTabBarControlFramework-Release.xcconfig"; sourceTree = "<group>"; };
 		5A56530115D1E72F00F9EFD5 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		6E1AAAC0232385360039E0AD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Resources/en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8B3987C31184F19D004462EE /* AdiumGradient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AdiumGradient.png; path = Resources/AdiumGradient.png; sourceTree = "<group>"; };
 		8B3987C41184F19D004462EE /* AquaTabClose_Front_Pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AquaTabClose_Front_Pressed.png; path = Resources/AquaTabClose_Front_Pressed.png; sourceTree = "<group>"; };
 		8B3987C51184F19D004462EE /* AquaTabClose_Front_Rollover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AquaTabClose_Front_Rollover.png; path = Resources/AquaTabClose_Front_Rollover.png; sourceTree = "<group>"; };
@@ -238,7 +239,6 @@
 		8BD4397D1185154600DB4AC3 /* DemoFakeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DemoFakeModel.h; path = Source/DemoFakeModel.h; sourceTree = "<group>"; };
 		8BD4397E1185154600DB4AC3 /* DemoFakeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DemoFakeModel.m; path = Source/DemoFakeModel.m; sourceTree = "<group>"; };
 		8BD4399D118516A900DB4AC3 /* DemoWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DemoWindow.xib; path = Resources/DemoWindow.xib; sourceTree = "<group>"; };
-		8D1AC97B0486D23100FE50C9 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = Resources/English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		97FF177011EB5711004FA751 /* PSMUnifiedTabStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PSMUnifiedTabStyle.h; path = Source/PSMUnifiedTabStyle.h; sourceTree = "<group>"; };
 		97FF177111EB5711004FA751 /* PSMUnifiedTabStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PSMUnifiedTabStyle.m; path = Source/PSMUnifiedTabStyle.m; sourceTree = "<group>"; };
 		98CC8D2F15CECFB900A40F8B /* AquaTabClose_Front_Pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AquaTabClose_Front_Pressed@2x.png"; path = "Resources/AquaTabClose_Front_Pressed@2x.png"; sourceTree = "<group>"; };
@@ -559,13 +559,11 @@
 			};
 			buildConfigurationList = C056398B08A954F8003078D8 /* Build configuration list for PBXProject "PSMTabBarControl" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 1;
 			knownRegions = (
-				English,
-				Japanese,
-				French,
-				German,
+				en,
+				Base,
 			);
 			mainGroup = 0259C574FE90428111CA0C5A /* PSMTabBarControl */;
 			projectDirPath = "";
@@ -700,7 +698,7 @@
 		8D1AC97F0486D23B00FE50C9 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				8D1AC97B0486D23100FE50C9 /* English */,
+				6E1AAAC0232385360039E0AD /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
